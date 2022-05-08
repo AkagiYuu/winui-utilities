@@ -32,8 +32,8 @@ jobs:
       run: |
         $Tag = Get-Date -Format "yyy./MM.dd_HH:mm"
         echo "::set-output name=release_tag::$("$Tag")"
-        
-    - name: 'Get Previous tag'
+
+    - name: Get Previous tag
         id: previous_tag
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
         with:
