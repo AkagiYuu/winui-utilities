@@ -25,7 +25,7 @@ jobs:
       run: dotnet build -c release --no-restore
 
     - name: Compress
-      run: Compress-Archive -Path .\bin\Release\net6.0\* .\Release.zip
+      run: Compress-Archive -Path bin\Release\net6.0\* Release.zip
 
     - name: Release
       uses: softprops/action-gh-release@v1
