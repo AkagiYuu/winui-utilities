@@ -32,9 +32,14 @@ jobs:
       run: |
         $Tag = Get-Date -Format "yyy./MM.dd_HH:mm"
         echo "::set-output name=release_tag::$("$Tag")"
+    - name: 'Get Previous tag'
+        id: previous_tag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+        with:
+          fallback: 0.1.0
 
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
+        tag_name: ${{steps.previous_tag.outputs.tag}}
         files: Release.zip
