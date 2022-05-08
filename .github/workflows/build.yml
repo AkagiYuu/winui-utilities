@@ -30,7 +30,7 @@ jobs:
     - name: Generate release tag
       id: tag
       run: |
-        $Tag = Get-Date -Format "yyyy//MM/dd_HH:mm"
+        $Tag = Get-Date -Format "yyy./MM.dd_HH:mm"
         echo "::set-output name=release_tag::$("$Tag")"
 
     - name: Release
