@@ -24,9 +24,11 @@ jobs:
     - name: Build
       run: dotnet build -c release --no-restore
 
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        # Artifact name
-        name: Release #.zip will be added automatically
-        path: bin/Release/net6.0/
+    - name: Compress
+      run: Compress-Archive -Path .\bin\Release\net6.0\* .\Release.zip
+
+    - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: Release.zip
