@@ -27,8 +27,15 @@ jobs:
     - name: Compress
       run: Compress-Archive -Path bin\Release\net6.0\* Release.zip
 
+    - name: Generate release tag
+      id: tag
+      run: |
+        $Tag = Get-Date -Format "yyyy//MM/dd_HH:mm"
+        echo "::set-output name=release_tag::$("$Tag")"
+
     - name: Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
+        tag_name: ${{ steps.tag.outputs.release_tag }}
         files: Release.zip
