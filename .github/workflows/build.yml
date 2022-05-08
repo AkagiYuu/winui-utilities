@@ -3,6 +3,8 @@ name: A workflow to build an application
 on:
   push:
     branches: [ master ]
+  tags:
+    - 'v*'
 
 jobs:
   build:
@@ -29,6 +31,6 @@ jobs:
 
     - name: Release
       uses: softprops/action-gh-release@v1
-      # if: startsWith(github.ref, 'refs/tags/')
+      if: startsWith(github.ref, 'refs/tags/')
       with:
         files: Release.zip
