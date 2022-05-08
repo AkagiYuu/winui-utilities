@@ -3,8 +3,8 @@ name: A workflow to build an application
 on:
   push:
     branches: [ master ]
-  tags:
-    - 'v*'
+    tags:
+      - 'v*'
 
 jobs:
   build:
