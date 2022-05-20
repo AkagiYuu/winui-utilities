@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CliFx" Version="2.2.5" />
     <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.2.3" />
     <PackageReference Include="Microsoft.WSMan.Runtime" Version="7.2.3" />
   </ItemGroup>
