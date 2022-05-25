@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using WinUI.Utilities;
 using WinUI.Dependency;
 
-namespace WinUI.Command.Create;
+namespace WinUI.Command;
 
-internal class Main
+internal class Create
 {
     public static void Installer(string Target)
     {
@@ -20,6 +15,7 @@ internal class Main
 
     public static void Release(string Target)
     {
+        // Prepare
         var Architecture = "x64";
         var BinFolder = @$"{Target}\bin\{Architecture}\Release";
 

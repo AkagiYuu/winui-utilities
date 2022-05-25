@@ -1,29 +1,14 @@
-﻿using WinUI.Extension;
-using WinUI.Utilities;
-using CliFx;
+﻿using Cocona;
+using WinUI.Command;
 
-await new CliApplicationBuilder()
-            .AddCommandsFromThisAssembly()
-            .Build()
-            .RunAsync();
-// switch (args.Length)
-// {
-//     case 0:
-//         CommandlineHelper.PrintError("Missing arguments");
-//         return;
-//     case 1:
-//         CommandlineHelper.PrintError("Missing object");
-//         return;
-//     case 2:
-//         CommandlineHelper.PrintError("Missing target");
-//         return;
-//     case > 4:
-//         CommandlineHelper.PrintError("Too many arguments");
-//         return;
-// }
+var App = CoconaLiteApp.Create();
 
-// var Action = args[0].ToTitleCase();
-// var Object = args[1].ToTitleCase();
-// var Target = args[2];
+App.AddSubCommand("create", Command =>
+{
+    Command.AddCommand("installer", (string? Path) => Create.Installer(Path ?? "."));
+    Command.AddCommand("release", (string? Path) => Create.Release(Path ?? "."));
+});
 
-// ClassUtility.InvokeStaticMethod(Action, Object, Target);
+App.AddCommand("info", (string? Target) => Console.WriteLine(Info.Full(Target ?? ".")));
+
+App.Run();
